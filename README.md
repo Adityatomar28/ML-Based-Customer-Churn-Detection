@@ -1,4 +1,5 @@
-# 📡 AI-Powered Telecom Customer Churn Prediction
+# 📡 ML-Based-Customer-Churn-Detection
+
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Random%20Forest-orange?logo=scikit-learn&logoColor=white)
