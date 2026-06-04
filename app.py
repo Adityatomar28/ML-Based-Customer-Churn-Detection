@@ -301,5 +301,7 @@ def predict():
         return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
-    # Run on port 5001 to avoid conflict with macOS AirPlay (on 5000)
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    # Run on port 5001 to avoid conflict with macOS AirPlay (on 5000) or read from environment
+    port = int(os.environ.get("PORT", 5001))
+    debug_mode = os.environ.get("FLASK_DEBUG", "True").lower() in ("true", "1", "yes")
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
