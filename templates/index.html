@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Telecom Customer Churn Prediction Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ApexCharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Local Stylesheet -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <div class="dashboard-container">
+        
+        <!-- Header Section -->
+        <header class="main-header">
+            <div class="header-logo-title">
+                <div class="logo-wrapper">
+                    <i data-lucide="radio" class="logo-icon"></i>
+                    <div class="logo-glow"></div>
+                </div>
+                <div class="header-text">
+                    <h1>AI-Powered Telecom Customer Churn Prediction</h1>
+                    <p class="subtitle">Predict customer churn risk using machine learning and behavioral analytics.</p>
+                </div>
+            </div>
+            <div class="system-status">
+                <span class="status-dot"></span>
+                <span class="status-text">Production Model Online</span>
+            </div>
+        </header>
+
+        <!-- Hero Metrics Row -->
+        <section class="hero-metrics-row">
+            <div class="kpi-card" id="kpi-total">
+                <div class="kpi-icon-wrapper blue">
+                    <i data-lucide="users"></i>
+                </div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Total Customers</span>
+                    <h3 class="kpi-value" id="val-total">7,032</h3>
+                    <span class="kpi-trend positive">
+                        <i data-lucide="trending-up"></i> +12% MoM
+                    </span>
+                </div>
+            </div>
+            <div class="kpi-card" id="kpi-active">
+                <div class="kpi-icon-wrapper green">
+                    <i data-lucide="user-check"></i>
+                </div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Active Customers</span>
+                    <h3 class="kpi-value" id="val-active">5,163</h3>
+                    <span class="kpi-trend positive">
+                        <i data-lucide="trending-up"></i> +8.2% MoM
+                    </span>
+                </div>
+            </div>
+            <div class="kpi-card" id="kpi-churn">
+                <div class="kpi-icon-wrapper red">
+                    <i data-lucide="user-minus"></i>
+                </div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Churn Rate</span>
+                    <h3 class="kpi-value" id="val-churn">26.5%</h3>
+                    <span class="kpi-trend negative">
+                        <i data-lucide="trending-down"></i> -1.4% MoM
+                    </span>
+                </div>
+            </div>
+            <div class="kpi-card" id="kpi-accuracy">
+                <div class="kpi-icon-wrapper orange">
+                    <i data-lucide="cpu"></i>
+                </div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Model Accuracy</span>
+                    <h3 class="kpi-value" id="val-accuracy">77.0%</h3>
+                    <span class="kpi-trend stable">
+                        <i data-lucide="shield-check"></i> RF Classifier
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Prediction Panel & Results Section -->
+        <main class="prediction-grid">
+            
+            <!-- Left Side: Prediction Panel (Form) -->
+            <section class="prediction-panel card-glass">
+                <div class="panel-header">
+                    <i data-lucide="settings-2"></i>
+                    <h2>Predict Customer Churn</h2>
+                </div>
+                <form id="churn-form" class="panel-form">
+                    
+                    <div class="form-section-title">Customer Information</div>
+                    
+                    <!-- Gender selection -->
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <div class="select-wrapper">
+                            <select id="gender" name="gender" required>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <!-- Boolean / Categorical Toggles -->
+                    <div class="toggles-grid">
+                        <div class="toggle-group">
+                            <div class="toggle-text">
+                                <span class="toggle-title">Senior Citizen</span>
+                                <span class="toggle-desc">Aged 65 or older</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="SeniorCitizen" name="SeniorCitizen">
+                                <span class="slider-toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-group">
+                            <div class="toggle-text">
+                                <span class="toggle-title">Phone Service</span>
+                                <span class="toggle-desc">Voice service subscription</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="PhoneService" name="PhoneService" checked>
+                                <span class="slider-toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-group" id="multiple-lines-wrapper">
+                            <div class="toggle-text">
+                                <span class="toggle-title">Multiple Lines</span>
+                                <span class="toggle-desc">Subscribed to multiple numbers</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="MultipleLines" name="MultipleLines">
+                                <span class="slider-toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-group">
+                            <div class="toggle-text">
+                                <span class="toggle-title">Streaming TV</span>
+                                <span class="toggle-desc">IPTV streaming active</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="StreamingTV" name="StreamingTV">
+                                <span class="slider-toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-group">
+                            <div class="toggle-text">
+                                <span class="toggle-title">Streaming Movies</span>
+                                <span class="toggle-desc">Movie stream library active</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="StreamingMovies" name="StreamingMovies">
+                                <span class="slider-toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-group">
+                            <div class="toggle-text">
+                                <span class="toggle-title">Paperless Billing</span>
+                                <span class="toggle-desc">Electronic invoicing active</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="PaperlessBilling" name="PaperlessBilling" checked>
+                                <span class="slider-toggle"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-section-title">Billing Information</div>
+
+                    <!-- Billing Slider and Input -->
+                    <div class="form-group range-group">
+                        <div class="range-header">
+                            <label for="MonthlyCharges">Monthly Charges</label>
+                            <span class="range-value" id="monthly-charges-val">$50.00</span>
+                        </div>
+                        <input type="range" id="MonthlyCharges" name="MonthlyCharges" min="18.25" max="118.75" step="0.25" value="50.00" class="custom-range">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TotalCharges">Total Charges ($)</label>
+                        <div class="input-icon-wrapper">
+                            <i data-lucide="dollar-sign"></i>
+                            <input type="number" id="TotalCharges" name="TotalCharges" min="18.80" max="8684.80" step="0.01" value="150.00" required>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="form-actions">
+                        <button type="button" id="btn-reset" class="btn btn-secondary">
+                            <i data-lucide="rotate-ccw"></i> Reset Form
+                        </button>
+                        <button type="submit" id="btn-predict" class="btn btn-primary">
+                            <i data-lucide="sparkles"></i> Predict Churn
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Right Side: Results & Explainability Section -->
+            <section class="results-panel">
+                
+                <!-- Prediction Results -->
+                <div class="prediction-results card-glass" id="results-card">
+                    <!-- Default state (waiting) -->
+                    <div class="results-placeholder" id="results-placeholder">
+                        <div class="placeholder-icon-wrapper">
+                            <i data-lucide="brain-circuit"></i>
+                        </div>
+                        <h3>Awaiting Prediction Trigger</h3>
+                        <p>Fill out the customer information on the left and click "Predict Churn" to run the model.</p>
+                    </div>
+
+                    <!-- Dynamic output (churn/stay warning cards rendered here) -->
+                    <div class="results-output hidden" id="results-output">
+                        <!-- Head info -->
+                        <div class="results-header">
+                            <div class="results-badge" id="results-badge">High Churn Risk</div>
+                            <div class="score-circle-wrapper">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                                    <circle class="progress-ring__circle" id="progress-circle" stroke="#EF4444" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                                </svg>
+                                <div class="score-text">
+                                    <span class="score-number" id="score-percentage">78.5%</span>
+                                    <span class="score-label" id="score-label">Risk Score</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recommendations & Risk explanation -->
+                        <div class="results-body">
+                            <div class="recommendations-box">
+                                <h4>
+                                    <i data-lucide="lightbulb" class="rec-icon"></i>
+                                    Loyalty Recommendations & Actions
+                                </h4>
+                                <ul id="recommendations-list">
+                                    <li><strong>Offer Loyalty Discount:</strong> Apply 15% discount for a 1-year contract extension.</li>
+                                    <li><strong>Upgrade Tech Support:</strong> Proactively upgrade Support tier to premium.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explainability Chart Section -->
+                <div class="explainability-panel card-glass">
+                    <div class="panel-header">
+                        <i data-lucide="bar-chart-3"></i>
+                        <h2>Explainability: Top Drivers</h2>
+                    </div>
+                    <p class="explainability-desc">Relative feature importance contribution to model prediction output.</p>
+                    <div id="explainability-chart"></div>
+                    <div class="explainability-factors" id="explainability-factors-container">
+                        <!-- Top factors list injected here -->
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <!-- Global Analytics Dashboard -->
+        <section class="analytics-dashboard">
+            <div class="section-header">
+                <i data-lucide="line-chart"></i>
+                <h2>Global Customer Analytics Hub</h2>
+            </div>
+            
+            <div class="analytics-grid">
+                <!-- Chart 1: Churn Distribution Pie -->
+                <div class="analytics-card card-glass">
+                    <h3>Churn Distribution</h3>
+                    <div class="chart-wrapper">
+                        <div id="chart-churn-distribution"></div>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Monthly Charges vs Churn -->
+                <div class="analytics-card card-glass">
+                    <h3>Monthly Charges Distribution</h3>
+                    <div class="chart-wrapper">
+                        <div id="chart-monthly-charges"></div>
+                    </div>
+                </div>
+
+                <!-- Chart 3: Contract Type vs Churn -->
+                <div class="analytics-card card-glass">
+                    <h3>Contract Type Churn Performance</h3>
+                    <div class="chart-wrapper">
+                        <div id="chart-contract-churn"></div>
+                    </div>
+                </div>
+
+                <!-- Chart 4: Customer Retention Trends -->
+                <div class="analytics-card card-glass">
+                    <h3>Customer Retention by Tenure</h3>
+                    <div class="chart-wrapper">
+                        <div id="chart-retention-trends"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="dashboard-footer">
+            <div class="footer-left">
+                <p>&copy; 2026 Telecom Analytics Inc. All rights reserved.</p>
+                <div class="footer-meta">
+                    <span>Machine Learning Platform</span>
+                    <span class="divider"></span>
+                    <span>Version 1.0.0</span>
+                </div>
+            </div>
+            <div class="footer-center">
+                <p class="author">Developed by <strong>Aditya Singh Tomar</strong></p>
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/Adityatomar28" target="_blank" class="social-link" title="GitHub Profile">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/adityatomar28" target="_blank" class="social-link" title="LinkedIn Profile">
+                    <i data-lucide="linkedin"></i>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript Execution -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
