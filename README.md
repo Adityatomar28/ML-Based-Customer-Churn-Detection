@@ -15,8 +15,8 @@
 
 | Churn Predictor | Analytics Hub |
 |---|---|
-| ![Predictor](screenshots/predictor.png)![Uploading Screenshot 2026-06-05 at 12.11.52 AM.png…]()
- | ![Analytics](screenshots/analytics.png) |
+<img width="453" height="697" alt="Screenshot 2026-06-05 at 12 12 38 AM" src="https://github.com/user-attachments/assets/3fb319ad-d67b-46cb-9416-67dd3076ec9a" />
+
 
 ---
 
