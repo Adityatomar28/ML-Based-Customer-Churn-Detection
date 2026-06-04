@@ -1010,16 +1010,20 @@ input:checked + .slider-toggle:before {
 }
 
 .social-link {
-    width: 32px;
     height: 32px;
-    border-radius: 50%;
+    padding: 0 12px;
+    border-radius: 16px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
     transition: var(--transition-smooth);
+    text-decoration: none;
 }
 
 .social-link:hover {
@@ -1030,8 +1034,8 @@ input:checked + .slider-toggle:before {
 }
 
 .social-link i {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 
 /* Utility Animations */
