@@ -1,37 +1,178 @@
-# telecom-churn-prediction
-Link of the problem statement
-https://docs.google.com/document/d/1zhMqoDYlv1iB7u-NaojanYK_e6nsQP1xMidN0CFtxc0/edit?usp=sharing
+# 📡 AI-Powered Telecom Customer Churn Prediction
 
-# Telecom Customer Churn Prediction
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Random%20Forest-orange?logo=scikit-learn&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-Backend-black?logo=flask&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-Frontend-yellow?logo=javascript&logoColor=black)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-This project presents a comprehensive analysis and predictive modeling solution to address the challenge of customer churn in the telecommunications industry. The work is structured into three main phases: exploratory data analysis (EDA), development of an interactive data dashboard, and machine learning model building. Each sprint is designed to contribute to a robust understanding of customer behavior and enable actionable business decisions for reducing churn and enhancing customer retention.
+> Predict customer churn risk in real time using machine learning and behavioral analytics — with an interactive dark-themed dashboard, live model inference, and AI-generated retention recommendations.
 
-## Sprint 1: Exploratory Data Analysis
+---
 
-The initial phase of the project focuses on a detailed exploratory data analysis (EDA) to understand the patterns and characteristics of customer data. We examined the distribution of all variables, including customer demographics, service usage patterns, and account details. Key visualizations such as histograms, boxplots, and correlation matrices were used to identify trends and anomalies. One of the most significant findings was that customers with short tenure, high monthly charges, and month-to-month contracts were more likely to churn. Additionally, customers without internet services like tech support or online security exhibited higher churn rates. These insights suggest that service bundling and incentives for long-term contracts could help reduce churn. The EDA provided crucial input for feature selection in the later modeling stage.
+## 🖥️ Live Dashboard Preview
 
-## Sprint 2: Interactive Dashboard Using Streamlit
+| Churn Predictor | Analytics Hub |
+|---|---|
+| ![Predictor](screenshots/predictor.png) | ![Analytics](screenshots/analytics.png) |
 
-To communicate our findings effectively and interactively, we developed a data dashboard using Streamlit. The dashboard allows end users to explore churn trends across various customer segments by applying filters based on contract type, payment method, service subscriptions, and other demographics. Users can instantly see how these features influence churn, with charts updating dynamically based on their selections. This interactive experience empowers business stakeholders to make data-driven decisions in real time. The Streamlit dashboard offers a modern alternative to traditional slide decks, providing a professional and engaging interface for both internal analysis and client presentations.
+---
 
-## Sprint 3: Model Building and Prediction
+## ✨ Features
 
-The final sprint involved preparing the data and building predictive models to classify whether a customer is likely to churn. After identifying the task as a binary classification problem, we selected "Churn" as the target variable and applied standard preprocessing techniques. Numerical variables were normalized, and categorical variables were one-hot encoded. The dataset was split into training and testing sets using a 75:25 ratio. We trained multiple models including K-Nearest Neighbors, Logistic Regression, Support Vector Machines, Decision Trees, and Random Forest. Each model was evaluated using accuracy as the primary metric. Among all the algorithms, the Random Forest classifier achieved the highest accuracy and was selected as the final model for deployment. The results were visualized in a comparison plot to clearly show model performance.
+- 🔮 **Real-time churn prediction** — enter customer details and get an instant churn risk score
+- 📊 **Global Analytics Hub** — churn distribution, monthly charges, contract type, and retention by tenure
+- 💡 **AI Loyalty Recommendations** — actionable retention strategies generated per customer profile
+- 🧠 **Model Explainability** — top feature importance drivers shown for every prediction
+- 🟢 **Production Model Status** — live indicator showing model is online and serving
 
-## Conclusion and Recommendations
+---
 
-This end-to-end telecom churn prediction solution offers powerful insights and a practical toolset for reducing customer turnover. From the EDA, we learned which customer characteristics are most indicative of churn. The Streamlit dashboard enables business users to interact with this information and explore trends without technical expertise. The final machine learning model provides a reliable method to identify at-risk customers in advance, allowing for timely interventions. We recommend deploying the Random Forest model into a live environment where it can evaluate incoming customer data and flag high-risk individuals for retention campaigns. Additionally, future enhancements could include integrating customer lifetime value metrics and exploring advanced ensemble methods like XGBoost for further performance gains.
+## 📁 Folder Structure
 
-## Technologies Used
+```
+ML-Based-Customer-Churn-Detection/
+│
+├── static/
+│   ├── css/                   # Stylesheets
+│   └── js/                    # Frontend JavaScript
+│
+├── templates/
+│   └── index.html             # Main dashboard UI
+│
+├── notebooks/
+│   ├── 01_EDA.ipynb           # Exploratory Data Analysis
+│   ├── 02_Data_Preprocessing.ipynb
+│   └── 03_Model_Training.ipynb
+│
+├── churnapp.py                # Flask app — routes & ML inference
+├── app.js                     # Frontend logic
+├── churn_dataset.csv          # Raw dataset
+├── churn_model.pkl            # Trained Random Forest model
+├── churn_model1.pkl           # Alternate model checkpoint
+├── requirements.txt
+└── README.md
+```
 
-The project was implemented using Python and key data science libraries including Pandas, NumPy, Scikit-learn, Matplotlib, and Seaborn. Streamlit was used to develop the interactive dashboard. Git and GitHub were used for version control and collaboration.
+---
 
-## How to Run the Project
+## 📊 Key Stats (from Dashboard)
 
-1. Clone the repository to your local machine.
-2. Install required dependencies using `pip install -r requirements.txt`.
-3. Run the Jupyter notebooks in order for EDA and modeling.
-4. To launch the dashboard, execute `streamlit run app.py`.
+| Metric | Value |
+|---|---|
+| Total Customers | 7,032 |
+| Active Customers | 5,163 |
+| Churn Rate | 26.58% |
+| Model Accuracy | **77% (Random Forest)** |
 
-This project provides a strong foundation for predictive customer analytics in the telecom sector and can be extended or adapted to similar challenges in other subscription-based industries.
+---
 
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| ML & Data | Python, Pandas, NumPy, Scikit-learn |
+| Backend | Flask |
+| Frontend | HTML, CSS, JavaScript |
+| Visualization | Chart.js / custom JS charts |
+| Model Persistence | Joblib (`.pkl`) |
+| Version Control | Git & GitHub |
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/ML-Based-Customer-Churn-Detection.git
+cd ML-Based-Customer-Churn-Detection
+```
+
+### 2. Create a virtual environment
+```bash
+python -m venv venv
+source venv/bin/activate        # macOS/Linux
+venv\Scripts\activate           # Windows
+```
+
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the app
+```bash
+python churnapp.py
+```
+
+### 5. Open in browser
+```
+http://localhost:5001
+```
+
+---
+
+## 🤖 How the Prediction Works
+
+1. User enters customer details (gender, contract type, services, charges, tenure)
+2. Flask backend preprocesses inputs and runs inference via the trained Random Forest model
+3. Dashboard displays:
+   - **Churn Risk %** (e.g. 53.3% = HIGH RISK)
+   - **Top feature drivers** explaining the prediction
+   - **Loyalty Recommendations** tailored to the customer profile
+
+---
+
+## 📈 Model Building Summary
+
+- **Task:** Binary Classification (`Churn` = Yes / No)
+- **Train/Test Split:** 75% / 25%
+- **Preprocessing:** One-hot encoding for categorical features, normalization for numerical
+- **Models Evaluated:**
+
+| Model | Notes |
+|---|---|
+| K-Nearest Neighbors | Baseline |
+| Logistic Regression | Interpretable |
+| Support Vector Machine | High-dimensional |
+| Decision Tree | Explainable |
+| **Random Forest** ✅ | **Best accuracy — selected for production** |
+
+---
+
+## 📉 Key Churn Insights (from EDA)
+
+- Customers on **month-to-month contracts** churn the most
+- **Higher monthly charges** strongly correlate with churn
+- **Short tenure** (0–12 months) has the lowest retention rate
+- Customers **without tech support or online security** are at higher risk
+- **Two-year contract** customers have near-zero churn
+
+---
+
+## 💡 Business Recommendations
+
+1. **Offer contract upgrade incentives** — 15% discount for switching to a 12-month plan
+2. **Proactive loyalty credits** — apply $10/month credit for high-billing customers
+3. **Bundle premium support** — include free tech support tier for at-risk customers
+4. **Target new customers early** — first 12 months are the highest churn risk window
+
+---
+
+## 🔮 Future Enhancements
+
+- [ ] Add XGBoost / LightGBM for improved accuracy
+- [ ] Integrate Customer Lifetime Value (CLV) scoring
+- [ ] Add SHAP-based explainability (full waterfall charts)
+- [ ] User authentication for multi-team access
+- [ ] Export predictions as CSV for CRM integration
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+> Built with ❤️ for production-grade customer analytics.
